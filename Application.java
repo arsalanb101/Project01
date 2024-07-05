@@ -23,7 +23,7 @@
 		        System.out.println("Welcome to my Calculator! \n");
 		        
 		        while (true) {
-		            System.out.println("Please enter an operation to begin (add, subtract, multiply, divide, power, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
+		            System.out.println("Please enter an operation to begin (add, subtract, multiply, divide, power, sqrt, log, log10, sin, cos, tan, factorial, permutation) or 'exit' to quit:");
 		            String operation = scanner.nextLine();  
 		            
 		            if (operation.equalsIgnoreCase("exit")) {
@@ -85,37 +85,54 @@
                 case "tan":
                     System.out.println("Enter the angle in radians:");
                     double tanOf = scanner.nextDouble();
-                    System.out.println("Result of tan(" + tanOf + ") is: " + tan(tanOf));
+                    System.out.println("Result of tan of " + tanOf + " is: " + tan(tanOf));
                     break;
                     
                 case "sin":
                     System.out.println("Enter the angle in radians:");
                     double sinOf = scanner.nextDouble();
-                    System.out.println("Result of sin(" + sinOf + ") is: " + sin(sinOf));
+                    System.out.println("Result of sin of " + sinOf + " is: " + sin(sinOf));
                     break;
                     
                 case "cos":
                     System.out.println("Enter the angle in radians:");
                     double cosOf = scanner.nextDouble();
-                    System.out.println("Result of cos(" + cosOf + ") is: " + cos(cosOf));
+                    System.out.println("Result of cos of " + cosOf + " is: " + cos(cosOf));
                     break;
                     
                 case "log":
                     System.out.println("Enter the number:");
                     double logNumber = scanner.nextDouble();
-                    System.out.println("Result of log(" + logNumber + ") is: " + log(logNumber));
+                    System.out.println("Result of log of " + logNumber + " is: " + log(logNumber));
                     break;
                     
                 case "log10":
                     System.out.println("Enter the number:");
                     double log10Number = scanner.nextDouble();
-                    System.out.println("Result of log10(" + log10Number + ") is: " + log10(log10Number));
+                    System.out.println("Result of log10 of " + log10Number + " is: " + log10(log10Number));
                     break;
                     
                 case "sqrt":
                     System.out.println("Enter the number:");
                     double sqrtNumber = scanner.nextDouble();
-                    System.out.println("Result of sqrt(" + sqrtNumber + ") is: " + sqrt(sqrtNumber));
+                    System.out.println("Result of sqrt of " + sqrtNumber + " is: " + sqrt(sqrtNumber));
+                    break;
+                
+                case "permutation":
+                    System.out.println("Enter number of items:");
+                    int items  = scanner.nextInt();
+                    while(items > 100 || items <= 0) {
+                    	System.out.println("Please choose a number between 0 and 100: ");
+                        items  = scanner.nextInt();
+                    }
+                    System.out.println("Enter number of items to choose from: ");
+                    int choose  = scanner.nextInt();
+                    while(choose > items) {
+                    	System.out.println("Please choose a number less than or equal to the # of items: ");
+                        choose  = scanner.nextInt();
+                    }
+                    
+                    System.out.println("Result of "+items+"P"+choose+" is: "+permutation(items,choose));
                     break;
                     
                 default:
@@ -195,6 +212,14 @@
     // Tangent function
     public static double tan(double angleRadians) {
         return Math.tan(angleRadians);
+    }
+    
+    public static double permutation(double x, double r) {
+		
+    	if(r == 0) return 1;
+    	
+    	return x * permutation(x-1, r - 1);
+    	
     }
 }
 
